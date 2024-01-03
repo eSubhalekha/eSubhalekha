@@ -158,7 +158,7 @@ class Auth
      * @param string $userID The userID of the user.
      * @return array The result of the select query.
      */
-    public function getUser($userID)
+    public static function getUser($userID)
     {   
         DB::connect();
         $userID = DB::sanitize($userID);
@@ -176,7 +176,7 @@ class Auth
      * Get all users.
      * @return array The result of the select query.
      */
-    public function getUsers()
+    public static function getUsers()
     {
         DB::connect();
         $users = DB::select('users', '*', "status <> 'deleted'")->fetchAll();

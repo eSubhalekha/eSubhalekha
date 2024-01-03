@@ -73,7 +73,7 @@ DB::close();
                             <?= $wedding['weddingName'] ?>
                         </td>
                         <td>
-                            <?= $wedding['host'] ?>
+                            <?= Auth::getUser($wedding['host'])['name']; ?>
                         </td>
                     </tr>
                 <?php } ?>

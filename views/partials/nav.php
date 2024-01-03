@@ -32,7 +32,7 @@
                                 <?php echo App::getUser()['name']; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item disabled" href="<?php echo route('profile'); ?>">Profile</a></li>
+                                <li><a class="dropdown-item" href="<?php echo route('dashboard'); ?>">Dashboard</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

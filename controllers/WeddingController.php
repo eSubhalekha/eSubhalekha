@@ -32,9 +32,7 @@ class Wedding
     public $languages;
     public $fromRoles;
     public $tiers;
-    public $hostList = ['dummy.com'];
-    public $partnerList = ['dummy.com'];
-    public $managerList = ['dummy.com'];
+    public $userList = ['dummy.com'];
 
     public $error;
     public $errorMsgs;
@@ -96,26 +94,12 @@ class Wedding
         $this->tiers = enumToArray(DB::select('information_schema.COLUMNS', 'COLUMN_TYPE', "TABLE_NAME = 'weddings'
         AND COLUMN_NAME = 'tier'")->fetch()[0]);
 
-        $hostData = DB::select('users', 'email', "role = 
-       'host' OR role = 'user' AND status <> 'deleted'")->fetchAll();
+        $userData = DB::select('users', 'userID', "status <> 'deleted'")->fetchAll();
 
-        foreach ($hostData as $host) {
-            $this->hostList[] = $host['email'];
+        foreach ($userData as $user) {
+            $this->userList[] = $user['userID'];
         }
 
-        $partnerData = DB::select('users', 'email', "role = 
-       'partner' AND status <> 'deleted'")->fetchAll();
-
-        foreach ($partnerData as $partner) {
-            $this->partnerList[] = $partner['email'];
-        }
-
-        $managerData = DB::select('users', 'email', "role = 
-      'manager' AND status <> 'deleted'")->fetchAll();
-
-        foreach ($managerData as $manager) {
-            $this->managerList[] = $manager['email'];
-        }
         DB::close();
 
 
@@ -323,7 +307,7 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid host',
                         'validate' => function () {
-                            return in_array($this->host, $this->hostList);
+                            return in_array($this->host, $this->userList);
                         },
                     ]
                 ],
@@ -335,7 +319,7 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid partner',
                         'validate' => function () {
-                            return in_array($this->partner, $this->partnerList);
+                            return in_array($this->partner, $this->userList);
                         },
                     ]
                 ],
@@ -347,7 +331,7 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid manager',
                         'validate' => function () {
-                            return in_array($this->manager, $this->managerList);
+                            return in_array($this->manager, $this->userList);
                         },
                     ]
                 ],
@@ -422,10 +406,7 @@ class Wedding
    // Update operation
     public function update($weddingID, array $data)
     {
-        // getting old values of wedding
-        $fetchWedding=$this->getWedding($weddingID,$data['lang']);
-        $oldValuesOfWedding=$fetchWedding['errorMsgs']['wedding'];
-
+         
         // Sanitize and assign values
         DB::connect();
         $this->weddingID = trim(DB::sanitize($weddingID));
@@ -436,6 +417,12 @@ class Wedding
         $this->brideName = trim(DB::sanitize($data['brideName']));
         $this->groomName = trim(DB::sanitize($data['groomName']));
 
+        // getting old values of wedding
+        $fetchWedding=$this->getWedding($weddingID,$this->lang);
+        $oldValuesOfWedding=$fetchWedding['errorMsgs']['wedding'];
+
+        echo $oldValuesOfWedding['story']=="null"?'yes':'no';
+        // die();
 
         $this->brideQualifications = !empty($data['brideQualifications']) ? trim(DB::sanitize($data['brideQualifications'])) : $oldValuesOfWedding['brideQualifications'];  // not req
 
@@ -445,12 +432,14 @@ class Wedding
        
         $this->groomBio =  !empty($data['groomBio']) ? trim(DB::sanitize($data['groomBio'])) : $oldValuesOfWedding['groomBio']; // not req
 
-  
-        $this->story =!empty($data['story']) ? DB::sanitize($data['story']):$oldValuesOfWedding['story']; // not req
+        $this->story =!empty($data['story']) ? json_encode($data['story']) :(
+            ($oldValuesOfWedding['story']=="null")? null:$oldValuesOfWedding['story']
+        ); // not req
+
         
-        $this->timeline = !empty($data['timeline']) ? DB::sanitize($data['timeline']):$oldValuesOfWedding['timeline']; // not req
+        $this->timeline = !empty($data['timeline']) ? json_encode($data['timeline']) : $oldValuesOfWedding['timeline']; // not req
         
-        $this->hosts =!empty($data['hosts']) ? DB::sanitize($data['hosts']):$oldValuesOfWedding['hosts']; // not req
+        $this->hosts =!empty($data['hosts']) ? json_encode($data['hosts']) : $oldValuesOfWedding['hosts']; // not req
         
         $this->invitation =  !empty($data['invitation']) ? trim(DB::sanitize($data['invitation'])) : $oldValuesOfWedding['invitation']; // not req
         
@@ -462,10 +451,10 @@ class Wedding
         
         $this->youtube = !empty($data['youtube']) ? trim(DB::sanitize($data['youtube'])) : $oldValuesOfWedding['youtube']; // not req
 
-        $this->accommodation = !empty($data['accommodation']) ? DB::sanitize($data['accommodation']):$oldValuesOfWedding['accommodation']; // not req
+        $this->accommodation = !empty($data['accommodation']) ? json_encode($data['accommodation']) : $oldValuesOfWedding['accommodation']; // not req
 
-        $this->travel = !empty($data['travel']) ? DB::sanitize($data['travel']):$oldValuesOfWedding['travel']; // not req
-        
+        $this->travel = !empty($data['travel']) ? json_encode($data['travel']) : $oldValuesOfWedding['travel']; // not req
+
         $this->phone = trim(DB::sanitize($data['phone']));
         $this->whatsappAPIKey = trim(DB::sanitize($data['whatsappAPIKey']));
         $this->host = trim(DB::sanitize($data['host']));
@@ -487,21 +476,21 @@ class Wedding
        'host' OR role = 'user' AND status <> 'deleted'")->fetchAll();
 
         foreach ($hostData as $host) {
-            $this->hostList[] = $host['email'];
+            $this->userList[] = $host['email'];
         }
 
         $partnerData = DB::select('users', 'email', "role = 
        'partner' AND status <> 'deleted'")->fetchAll();
 
         foreach ($partnerData as $partner) {
-            $this->partnerList[] = $partner['email'];
+            $this->userList[] = $partner['email'];
         }
 
         $managerData = DB::select('users', 'email', "role = 
       'manager' AND status <> 'deleted'")->fetchAll();
 
         foreach ($managerData as $manager) {
-            $this->managerList[] = $manager['email'];
+            $this->userList[] = $manager['email'];
         }
         DB::close();
 
@@ -710,7 +699,7 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid host',
                         'validate' => function () {
-                            return in_array($this->host, $this->hostList);
+                            return in_array($this->host, $this->userList);
                         },
                     ]
                 ],
@@ -722,7 +711,7 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid partner',
                         'validate' => function () {
-                            return in_array($this->partner, $this->partnerList);
+                            return in_array($this->partner, $this->userList);
                         },
                     ]
                 ],
@@ -734,14 +723,13 @@ class Wedding
                         'type' => 'custom',
                         'message' => 'Invalid manager',
                         'validate' => function () {
-                            return in_array($this->manager, $this->managerList);
+                            return in_array($this->manager, $this->userList);
                         },
                     ]
                 ],
             ],
         ];
 
-    
         // Call the Validator::validate function
         $validate = Validator::validate($fields);
 

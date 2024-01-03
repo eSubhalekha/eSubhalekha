@@ -62,8 +62,7 @@
     <!--Select2js-->
     
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -75,7 +74,6 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="<?php assets("css/common.css");?>">
     <link rel="stylesheet" href="<?php assets("css/dashboard.css");?>">
-    
     <title>eSubhalekha.com</title>
   </head>  
 <body>

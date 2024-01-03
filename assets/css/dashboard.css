@@ -182,6 +182,21 @@ form{
   margin: 25px 0;
 }
 
+input, select{
+	background-color: var(--color-white-3) !important;
+    border-radius: 50px !important;
+    color: var(--color-primary-1) !important;
+    font-weight: bold !important;
+}
+label{
+	color: #293562 !important;
+}
+input::placeholder {
+  color: var(--color-primary-1) !important;
+  opacity: .4 !important;
+
+}
+
 
 
 
