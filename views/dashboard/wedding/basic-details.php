@@ -196,6 +196,38 @@ function getImgURL($name){
 					</select>
 				</div>
 
+			<h1 class="h2 mt-3">Basic Details</h1>
+			<!-- Groom Qualifications -->
+			<div class="mb-3 col-6">
+				<label for="groomQualifications" class="form-label">Groom Qualifications (Optional)</label>
+				<input type="text" class="form-control" id="groomQualifications" name="groomQualifications"
+					placeholder="B.Tech"
+					value="<?= $_REQUEST['groomQualifications'] ?? $weddingData['groomQualifications'] ?>">
+			</div>
+
+			<!-- Bride Qualifications -->
+			<div class="mb-3 col-6">
+				<label for="brideQualifications" class="form-label">Bride Qualifications (Optional)</label>
+				<input type="text" class="form-control" id="brideQualifications" name="brideQualifications"
+					placeholder="B.Tech"
+					value="<?= $_REQUEST['brideQualifications'] ?? $weddingData['brideQualifications'] ?>">
+			</div>
+
+			<!-- Groom Bio -->
+			<div class="mb-3 col-sm-6">
+				<label for="groomBio" class="form-label">Groom Bio (Optional)</label>
+				<textarea class="form-control" id="groomBio" name="groomBio" placeholder="Enter Groom Bio"
+					rows="3"><?= $_REQUEST['groomBio'] ?? $weddingData['groomBio'] ?></textarea>
+			</div>
+
+			<!-- Bride Bio -->
+			<div class="mb-3 col-sm-6">
+				<label for="brideBio" class="form-label">Bride Bio (Optional)</label>
+				<textarea class="form-control" id="brideBio" name="brideBio" placeholder="Enter bride Bio"
+					rows="3"><?= $_REQUEST['brideBio'] ?? $weddingData['brideBio'] ?></textarea>
+			</div>
+
+
 				<!-- Language -->
 				<div class="mb-3 col-sm-6">
 					<label for="lang" class="form-label">Language</label>

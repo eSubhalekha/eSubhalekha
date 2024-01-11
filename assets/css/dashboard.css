@@ -210,18 +210,8 @@ textarea {
   max-height: 70px;
 }
 
-/* gallery */
 
-.capture{
-    position: absolute;
-    bottom: -12px;
-    right: -8px;
-    padding: 6px;
-    border: 2px solid var(--color-primary-1);
-}
-.img-fluid{
-  object-fit: cover !important;
-}
+
 
 /*loader*/
 

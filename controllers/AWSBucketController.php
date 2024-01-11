@@ -1,6 +1,6 @@
 <?php
  
-	require 'awss3bucket/aws-autoloader.php';
+	require 'controllers/awss3bucket/aws-autoloader.php';
 	use Aws\S3\S3Client;
 	use Aws\S3\Exception\S3Exception;
 
