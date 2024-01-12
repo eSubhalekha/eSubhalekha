@@ -1,5 +1,4 @@
 <?php
-
 locked(['user', 'host', 'manager', 'admin']);
 require('views/partials/dashboard/head.php');
 require('views/partials/dashboard/sidebar.php');
@@ -9,7 +8,6 @@ $weddings = DB::select('weddings', '*', "lang = 'en'")->fetchAll();
 DB::close();
 
 controller("Wedding");
-
 $wedding = new Wedding();
 $weddingData = $wedding->getWedding($_REQUEST['id'], $_REQUEST['lang']);
 
@@ -29,19 +27,14 @@ $weddingData = $wedding->getWedding($_REQUEST['id'], $_REQUEST['lang']);
      		<?php
 
 			if (isset($_POST['btn-submit'])) {
-
-				controller("AWSBucket");
-				$awsObj=new AWSBucket();
                 
 				// upload music to aws bucket
 				if(!empty($_FILES['musicTrack']['name'])){
-					$uploadedMusicURL = $awsObj->uploadToAWS($_FILES,'musicTrack');
+					controller("AWSBucket");
 					
-					if(!empty($weddingData['music'])){
-						$awsObj=new AWSBucket();
-        				$awsObj->deleteFromAWS($weddingData['music']);
-					}
-
+					$awsObj = new AWSBucket();
+					
+					$uploadedMusicURL = $awsObj->uploadToAWS($_FILES,'musicTrack');
 					if($uploadedMusicURL['error']){
 						echo '<div class="alert alert-danger">'.$uploadedMusicURL['errorMsg'].'</div>';
 					}
@@ -65,45 +58,12 @@ $weddingData = $wedding->getWedding($_REQUEST['id'], $_REQUEST['lang']);
 					</div>
 					<?php
 				} else
-					redirect("wedding/" . $_REQUEST['id'] . "/" . $_REQUEST['lang']."/our-story");
+					redirect("wedding/" . $_REQUEST['id'] . "/" . $_REQUEST['lang']."/whatsapp");
 
 			}
 
 			?>
     	
-    <div class="row">
-    		<!-- Groom Qualifications -->
-			<div class="mb-3 col-6">
-				<label for="groomQualifications" class="form-label">Groom Qualifications (Optional)</label>
-				<input type="text" class="form-control" id="groomQualifications" name="groomQualifications"
-					placeholder="B.Tech"
-					value="<?= $_REQUEST['groomQualifications'] ?? $weddingData['groomQualifications'] ?>">
-			</div>
-
-			<!-- Bride Qualifications -->
-			<div class="mb-3 col-6">
-				<label for="brideQualifications" class="form-label">Bride Qualifications (Optional)</label>
-				<input type="text" class="form-control" id="brideQualifications" name="brideQualifications"
-					placeholder="B.Tech"
-					value="<?= $_REQUEST['brideQualifications'] ?? $weddingData['brideQualifications'] ?>">
-			</div>
-
-			<!-- Groom Bio -->
-			<div class="mb-3 col-sm-6">
-				<label for="groomBio" class="form-label">Groom Bio (Optional)</label>
-				<textarea class="form-control" id="groomBio" name="groomBio" placeholder="Enter Groom Bio"
-					rows="3"><?= $_REQUEST['groomBio'] ?? $weddingData['groomBio'] ?></textarea>
-			</div>
-
-			<!-- Bride Bio -->
-			<div class="mb-3 col-sm-6">
-				<label for="brideBio" class="form-label">Bride Bio (Optional)</label>
-				<textarea class="form-control" id="brideBio" name="brideBio" placeholder="Enter bride Bio"
-					rows="3"><?= $_REQUEST['brideBio'] ?? $weddingData['brideBio'] ?></textarea>
-			</div>
-			
-    </div>
-
     	<div class="row">
 		    <div class="mb-3 col-sm-6">
 		      <label for="musicTrack" class="form-label">Music Track</label>
