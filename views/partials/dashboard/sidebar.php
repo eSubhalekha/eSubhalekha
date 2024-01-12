@@ -50,7 +50,7 @@ DB::close();
             Basic Details
           </a>
 
-           <a class="nav-link hosts" aria-current="page"
+          <a class="nav-link hosts" aria-current="page"
             href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/hosts') . queryString(); ?>">
             <i class="bi bi-people-fill"></i>
             Hosts
@@ -68,19 +68,13 @@ DB::close();
             Additional Details
           </a>
 
-          <a class="nav-link our-story" aria-current="page"
-            href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/our-story') . queryString(); ?>">
-            <i class="bi bi-file-earmark-post"></i>
-            Our Story
-          </a>
-
           <a class="nav-link whatsapp" aria-current="page"
             href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/whatsapp') . queryString(); ?>">
             <i class="bi bi-whatsapp"></i>
             Whatsapp Setup
           </a>
 
-          <a class="nav-link gallery" aria-current="page"
+          <a class="nav-link whatsapp" aria-current="page"
             href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/gallery') . queryString(); ?>">
             <i class="bi bi-image"></i>
              Gallery
@@ -137,9 +131,6 @@ DB::close();
         document.querySelector(".basic-details").classList.toggle("active")
         break
 
-      case "<?php echo !empty($config['APP_SLUG']) ? '/' . $config['APP_SLUG'] . '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/our-story' : '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/our-story'; ?>":
-        document.querySelector(".our-story").classList.toggle("active")
-        break
         
       case "<?php echo !empty($config['APP_SLUG']) ? '/' . $config['APP_SLUG'] . '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/hosts' : '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/hosts'; ?>":
         document.querySelector(".hosts").classList.toggle("active")
@@ -154,9 +145,6 @@ DB::close();
         document.querySelector(".additional-details").classList.toggle("active")
         break
 
-      case "<?php echo !empty($config['APP_SLUG']) ? '/' . $config['APP_SLUG'] . '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/gallery' : '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/gallery'; ?>":
-        document.querySelector(".gallery").classList.toggle("active")
-        break
         
       case "<?php echo !empty($config['APP_SLUG']) ? '/' . $config['APP_SLUG'] . '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/whatsapp' : '/wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/whatsapp'; ?>":
         document.querySelector(".whatsapp").classList.toggle("active")

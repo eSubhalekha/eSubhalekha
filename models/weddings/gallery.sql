@@ -5,6 +5,6 @@ CREATE TABLE gallery(
     weddingID VARCHAR(255),
     imageURL VARCHAR(2048),
     uploadedAt DATETIME,
-    type ENUM('bride', 'groom', 'couple','event', 'gallery', 'hero', 'template'),
+    type ENUM('bride', 'groom', 'both','event', 'gallery', 'hero', 'template'),
     FOREIGN KEY (weddingID) REFERENCES weddings(weddingID)
 );
