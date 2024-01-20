@@ -65,7 +65,7 @@ function getImgURL($name){
 
 				if (!empty($_FILES['couple']['name'])) {
 
-					echo 'document.getElementById("loader-div").style.display = "block"; ';
+					echo '<script> document.getElementById("loader-div").style.display = "block"; </script>';
 
 					controller("AWSBucket");
 					$awsObj=new AWSBucket();
@@ -88,7 +88,7 @@ function getImgURL($name){
 							<div class="alert alert-danger">
 								<?php
 								foreach ($addToGallery['errorMsgs'] as $msg) {
-									echo 'document.getElementById("loader-div").style.display = "none";';
+									echo '<script> document.getElementById("loader-div").style.display = "none"; </script>';
 									if (count($msg))
 										echo $msg[0] . "<br>";
 								}
@@ -96,7 +96,7 @@ function getImgURL($name){
 							</div>
 							<?php
 						} else{
-							echo 'document.getElementById("loader-div").style.display = "none";';
+							echo '<script> document.getElementById("loader-div").style.display = "none"; </script>';
 							redirect("wedding/" . $_REQUEST['id'] . "/" . $_REQUEST['lang']."/gallery");
 						}
 					}
@@ -131,7 +131,7 @@ function getImgURL($name){
 							</div>
 							<?php
 						} else
-							redirect("wedding/" . $_REQUEST['id'] . "/" . $_REQUEST['lang']."/preview");
+							redirect("wedding/" . $_REQUEST['id'] . "/" . $_REQUEST['lang']."/gallery");
 					}
 				}
 
@@ -225,8 +225,6 @@ function getImgURL($name){
   		<div class="d-flex align-items-center">
   			<h5>Pre Wedding Gallery</h5>
 
-  		<button type="button" class="btn btn-primary mb-3" id="addPreWedImgBtn"><i
-                        class="bi bi-plus-circle"></i>Add</button>
 
   		</div>
                         
@@ -243,7 +241,7 @@ function getImgURL($name){
 
 				    <div class="col-sm-3">
 				    	<!-- Submit Button -->
-		    			<button type="submit" name="btn-submit" class="btn btn-primary btn-sm">Upload</button>
+		    			<button type="submit" name="btn-submit" class="btn btn-primary btn-sm">Add</button>
 				    </div>
 
 				</div>

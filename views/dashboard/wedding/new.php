@@ -121,7 +121,7 @@ function getImgURL($name){
 					</div>
 					<?php
 				} else
-					redirect("wedding/" . $_REQUEST['weddingID'] . "/" . $_REQUEST['lang'] . "/host");
+					redirect("wedding/" . $_REQUEST['weddingID'] . "/" . $_REQUEST['lang'] . "/hosts");
 
 			}
 

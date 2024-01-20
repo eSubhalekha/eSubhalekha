@@ -68,6 +68,12 @@ DB::close();
             Additional Details
           </a>
 
+          <a class="nav-link gallery" aria-current="page"
+            href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/gallery') . queryString(); ?>">
+            <i class="bi bi-image"></i>
+             Gallery
+          </a>
+
           <a class="nav-link our-story" aria-current="page"
             href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/our-story') . queryString(); ?>">
             <i class="bi bi-file-earmark-post"></i>
@@ -80,12 +86,6 @@ DB::close();
             Whatsapp Setup
           </a>
 
-          <a class="nav-link gallery" aria-current="page"
-            href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/gallery') . queryString(); ?>">
-            <i class="bi bi-image"></i>
-             Gallery
-          </a>
-          
 
           <a class="nav-link preview" target="_blank" aria-current="page"
             href="<?php echo route('wedding/' . $_REQUEST['id'] . '/' . $_REQUEST['lang'] . '/preview') . queryString(); ?>">
