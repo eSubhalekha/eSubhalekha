@@ -77,12 +77,12 @@
          	<div class="row justify-content-center">
          		<div class="col-sm-3 feature-box row align-items-center justify-content-center">
          			<div class="col-3 feature-img"><i class="bi bi-globe"></i></div>
-         			<div class="col-7"><p>Multiple domains</p></div>
+         			<div class="col-7"><p>Multiple Domains</p></div>
          		</div>
 
          		<div class="col-sm-3 feature-box row align-items-center justify-content-center">
          			<div class="col-3 feature-img"><i class="bi bi-qr-code-scan"></i></div>
-         			<div class="col-7"><p>Visting cards with QR code</p></div>
+         			<div class="col-7"><p>Visting Cards with QR code</p></div>
          		</div>
 
          		<div class="col-sm-3 feature-box row align-items-center justify-content-center">

@@ -41,9 +41,6 @@
   "themes/{category}/{id}": {
     "path": "views/themes/theme.php"
   },
-  "templates/Royal-Bramhin": {
-    "path": "views/templates/Royal-Bramhin/index.php"
-  },
   "login": {
     "path" : "views/auth/login.php"
   },
@@ -73,9 +70,6 @@
   },
   "wedding/{id}/{lang}/basic-details": {
     "path": "views/dashboard/wedding/basic-details.php"
-  },
-  "wedding/{id}/{lang}/our-story": {
-    "path": "views/dashboard/wedding/ourstory.php"
   },
   "wedding/{id}/{lang}/edit": {
     "path": "views/dashboard/wedding/edit.php"
