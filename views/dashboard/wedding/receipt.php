@@ -1,12 +1,14 @@
 <?php
 
-errors(1);
+// errors(1);
 
-require_once __DIR__ . '/../../../controllers/vendor/autoload.php';
+// Load TCPDF library
+require_once(__DIR__ . '/../../../controllers/TCpdf/tecnickcom/tcpdf/tcpdf.php');
 
-if (isset($_REQUEST['id'])) {
-    $currentUser = App::getUser();
+$currentUser = App::getUser();
 
+// Check if the wedding ID is set
+if (isset($_REQUEST['id']) && $currentUser['userID']) {
     $weddingID = $_REQUEST['id'];
 
     controller("Payment");
@@ -18,102 +20,74 @@ if (isset($_REQUEST['id'])) {
     $getPayment = $payment->getPaymentByID($weddingID, $currentUser['userID']);
     $weddingData = $wedding->getWedding($_REQUEST['id'], $_REQUEST['lang']);
     $template = $weddingData['template'];
-    $themeName = ucwords(explode("_", $template)[0]);
+    $themeName = ucwords(explode("_", $template)[2]);
     $themeDetails = json_decode(file_get_contents('themes/' . $template . '/manifest.json'), true);
     $themePrice = $themeDetails['themePrice'];
-} else {
-    return;
-}
 
-// Create an instance of mPDF
-$mpdf = new \Mpdf\Mpdf();
+    // Initialize TCPDF
+    $pdf = new TCPDF();
+    // Add a page
+    $pdf->AddPage();
 
-// Start buffering to generate the HTML content
-ob_start();
-?>
+    // Set default font
+    $pdf->SetFont('dejavusans', '', 12);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Plan Invoice</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-        }
-        .container {
-            width: 100%;
-            margin: 0 auto;
-        }
-        h2, h3 {
-            text-align: center;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
+
+    // Create the HTML content for the invoice
+    $html = '
+     <style>
+
         .text-end {
             text-align: right;
         }
-        .total {
-            font-weight: bold;
-        }
+      
     </style>
-</head>
-<body>
+        <br><br>
+        <h2 style="text-align:center;">eSubhalekha.com</h2>
+        <h3 style="text-align:center;">Invoice</h3> <br><br>
+        <table border="1" cellpadding="8">
+            <tr>
+                <td>
+                    <b>Invoice ID: </b> ' . $getPayment['paymentID'] . '<br><br>
+                    <b>Paid At:</b> ' . $getPayment['paidAt'] . '<br><br>
+                    <b>Wedding ID:</b> ' . $getPayment['weddingID'] . ' - '.$_REQUEST['lang'] . '<br>
+                </td>
+                <td>
+                    <b>Name:</b> ' . $currentUser['name'] . '<br><br>
+                    <b>Email:</b> ' . $currentUser['email'] . '<br><br>
+                    <b>Phone:</b> ' . $currentUser['phone'] . '<br>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <h4>Details of Payment</h4>
+        <table border="1" cellpadding="8">
 
-<div class="container">
-    <h2>eSubhalekha.com</h2>
-    <h3>Invoice</h3>
-    <div>
-        <p><strong>Invoice:</strong> <?= $getPayment['paymentID']; ?></p>
-        <p><strong>Paid At:</strong> <?= $getPayment['paidAt']; ?></p>
-        <p><strong>Wedding ID:</strong> <?= $getPayment['weddingID']; ?></p>
-    </div>
-    <div>
-        <p><strong>Name:</strong> <?= $currentUser['name']; ?></p>
-        <p><strong>Email:</strong> <?= $currentUser['email']; ?></p>
-        <p><strong>Phone:</strong> <?= $currentUser['phone']; ?></p>
-    </div>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Details</th>
-            <th class="text-end">Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Wedding Theme</td>
-            <td class="text-end"><?= $themeName; ?></td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td class="text-end"><strong>Total</strong></td>
-            <td class="text-end total"><?= $themePrice; ?> &#8377;</td>
-        </tr>
-        </tfoot>
-    </table>
-</div>
+             <tbody>
+                <tr>
+                    <td class="text-end">Wedding Theme</td>
+                    <td class="text-end">'.$themeName.'</td>
+                </tr>
+             </tbody>
 
-</body>
-</html>
+           <tfoot>
+            <tr>
+                <td class="text-end"><strong>Total</strong></td>
+                <td class="text-end" style="font-size:14px;">'. $themePrice.' &#8377; </td>
+            </tr>
+            </tfoot>
+        </table>
+    ';
 
-<?php
-// Get the content from the buffer and clean it
-$html = ob_get_clean();
+    // Output the HTML content to PDF
+    $pdf->writeHTML($html, true, false, true, false, '');
 
-// Write the HTML content to the PDF
-$mpdf->WriteHTML($html);
+    // Output the PDF (force download)
+    $pdf->Output('wedding_invoice_' . $weddingID . '.pdf', 'I');
 
-// Output the PDF as a downloadable file
-$mpdf->Output('wedding-invoice.pdf', 'D');
+} else {
+    echo "Invalid request.";
+    return;
+}
+?>

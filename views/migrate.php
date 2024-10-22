@@ -10,7 +10,8 @@ errors();
             'payments' => 'weddings/payments.sql',
             'guests' => 'weddings/guests.sql',
             'gallery' => 'weddings/gallery.sql',
-            'partners' => 'auth/partners.sql'
+            'partners' => 'auth/partners.sql',
+            'offers' => 'weddings/offers.sql'
             // Add more tables as needed
         ];
         

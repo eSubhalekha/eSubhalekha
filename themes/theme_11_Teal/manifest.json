@@ -1,0 +1,11 @@
+{
+   "themeID":11,
+  "themeName": "Teal",
+  "themePrice": 2000,
+  "preview":"https://template2-ashy.vercel.app/",
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

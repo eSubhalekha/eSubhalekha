@@ -1,0 +1,11 @@
+{
+  "themeID":10,
+  "themeName": "Rosey",
+  "themePrice": 2000,
+  "preview":"https://template1-gray.vercel.app/",
+  "displayImages": [
+    "img/theme.png"
+  ],
+    "active":true,
+  "createdDate" : "2024-10-15"
+}

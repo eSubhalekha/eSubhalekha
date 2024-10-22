@@ -1,0 +1,11 @@
+{
+  "themeID":3,
+  "themeName": "Fairytale",
+  "themePrice": 3000,
+  "isPremium":true,
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

@@ -1,0 +1,11 @@
+{
+  "themeID":1,
+  "themeName": "August",
+  "themePrice": 4000,
+  "displayImages": [
+    "img/august.png"
+  ],
+  "isPremium": true,
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

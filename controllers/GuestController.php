@@ -43,13 +43,16 @@ class Guest
     {
         // Sanitize and assign values
         DB::connect();
-        $this->guestID = md5(md5($this->lang.$this->phone.$this->name).md5(time().uniqid()));
+      
         $this->weddingID = trim(DB::sanitize($data['weddingID']));
         $this->lang = trim(DB::sanitize($data['lang'] ?? 'en'));
 
         $this->name = trim(DB::sanitize($data['name']));
         $this->email = trim(DB::sanitize($data['email']));
         $this->phone = trim(DB::sanitize($data['phone']));
+
+        $this->guestID = md5(md5($this->lang.$this->phone.$this->name).md5(time().uniqid()));
+
         $this->gender = trim(DB::sanitize($data['gender']));
         $this->status = trim(DB::sanitize($data['status']));
         $this->createdAt = trim(DB::sanitize($data['createdAt']));
@@ -158,6 +161,8 @@ class Guest
                 'name' => $this->name,
                 'email' => $this->email,
                 'phone' => $this->phone,
+                'additionalGuests' => $this->additionalGuests,
+                'guestMessage' => $this->guestMessage,
                 'gender' => $this->gender,
                 'createdBy' => $this->createdBy,
                 'createdAt' => date('Y-m-d H:i:s'),

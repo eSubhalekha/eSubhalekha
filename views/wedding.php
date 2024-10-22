@@ -4,9 +4,8 @@
 
 require('views/partials/dashboard/tracks.php');
 
-if( $completed != sizeof($tracks) ){
+if( $completed != sizeof($tracks) && !isset($_REQUEST['theme']) ){
 	require('config.php');
-	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +39,7 @@ $config['APP_TITLE'] = "Page Not Found - ".$config['APP_NAME']
 <?php
 
 }else{
-
+    
 	controller('Theme');
 	$wedding = new Wedding();
 	$weddingData = $wedding->getWedding($_REQUEST['id'], $_REQUEST['lang']);
@@ -49,7 +48,19 @@ $config['APP_TITLE'] = "Page Not Found - ".$config['APP_NAME']
 	$themeController = new ThemeController();
 	// Call the getThemes method
 	if(isset($_REQUEST['theme'])){
-		$themes = $themeController->render($_REQUEST['theme'], $_REQUEST['type']);	
+	    
+	    $folders = array_filter(glob('themes/*'), 'is_dir');
+	  
+	    foreach ($folders as $folder) {
+            
+            $themeID = ucwords(explode("_", basename($folder))[1]);
+           
+            if($themeID == $_REQUEST['theme'] ){
+                 
+                $themes = $themeController->render(basename($folder));        
+            }
+	    }
+	    
 	}
 	else if(isset($weddingData['template'])){
 		$themes = $themeController->render($weddingData['template']);	

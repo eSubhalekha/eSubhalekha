@@ -31,8 +31,6 @@ sort($languages);
 
 				$_REQUEST['host'] = App::getUser()['userID'];
 			
-
-			
 				$createWedding = $wedding->create($_REQUEST);
 
 				if ($createWedding['error']) {

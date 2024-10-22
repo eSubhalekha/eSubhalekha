@@ -1,5 +1,7 @@
 <?php
+
 // errors(1);
+
 $config['APP_TITLE'] = "Login | ".$config['APP_TITLE'];
 
 $roleLogin = "user";

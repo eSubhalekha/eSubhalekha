@@ -61,6 +61,11 @@ img {
   font-weight: bold;
 }
 
+.offcanvas .nav-link.active {
+  color: var(--color-link) !important;
+  font-weight: bold;
+}
+
 .sidebar-heading {
   font-size: 0.75rem;
   text-transform: uppercase;

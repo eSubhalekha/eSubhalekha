@@ -1,0 +1,12 @@
+{
+   "themeID":7,
+  "themeName": "Evergreen",
+  "themePrice": 4000,
+  "isPremium":true,
+  "preview":"https://esubhaleka.vercel.app/",
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

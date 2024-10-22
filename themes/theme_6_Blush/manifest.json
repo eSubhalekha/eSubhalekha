@@ -1,0 +1,11 @@
+{
+   "themeID":6,
+  "themeName": "Blush",
+  "themePrice": 2000,
+  "preview":"https://template5-nine.vercel.app/",
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

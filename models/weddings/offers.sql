@@ -1,0 +1,8 @@
+CREATE TABLE offers (
+    offerID VARCHAR(255) PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    code VARCHAR(100) NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+    offer DECIMAL(5,2) NOT NULL
+);

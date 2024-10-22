@@ -18,24 +18,24 @@ $preweddingGallery=$gallery->getPreWedGallery($_REQUEST['id']);
   // delete img by url
     if(isset($_REQUEST['imgurl'])){
 
-    	controller("AWSBucket");
-		$awsObj=new AWSBucket();
+        controller("AWSBucket");
+        $awsObj=new AWSBucket();
 
         $imgurl=$_REQUEST['imgurl'];
         $gallery=new Gallery();
         $getrow=$gallery->deleteByURL($_REQUEST['id'],$imgurl);
         
         if(!$getrow['error']){
-        	$awsObj=new AWSBucket();
-        	$awsObj->deleteFromAWS($imgurl);
+            $awsObj=new AWSBucket();
+            $awsObj->deleteFromAWS($imgurl);
 
-        	$_SESSION['alert_message'] = "Deleted Successfully";
+            $_SESSION['alert_message'] = "Deleted Successfully";
 
             echo "<script> window.history.back(); window.location.reload(true); </script>";
         }
         else{
 
-        	$_SESSION['alert_message'] = "Failed to delete";
+            $_SESSION['alert_message'] = "Failed to delete";
 
             echo "<script> window.history.back(); window.location.reload(true); </script>";
 
@@ -47,47 +47,47 @@ $preweddingGallery=$gallery->getPreWedGallery($_REQUEST['id']);
 
 <head>
 
-	<style type="text/css">
-		
-	/* Full-screen overlay */
-	#UpLoader {
-	    display: none; /* Initially hidden */
-	    position: fixed;
-	    top: 0;
-	    left: 0;
-	    width: 100vw;
-	    height: 100vh;
-	    background-color: rgba(0, 0, 0, 0.8); /* Black background with 80% opacity */
-	    z-index: 9999; /* Make sure the loader is above other elements */
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    flex-direction: column;
+    <style type="text/css">
+        
+    /* Full-screen overlay */
+    #UpLoader {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8); /* Black background with 80% opacity */
+        z-index: 9999; /* Make sure the loader is above other elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
-	}
+    }
 
-	/* Ring Loader */
-	.myLoader {
-	    border: 8px solid var(--color-secondary-1); /* Light border for the outer part */
-	    border-top: 8px solid var(--color-primary-1); /* White color for the spinning part */
-	    border-radius: 50%;
-	    width: 60px;
-	    height: 60px;
-	    animation: spin 1s linear infinite; /* Infinite rotation animation */
-	}
+    /* Ring Loader */
+    .myLoader {
+        border: 8px solid var(--color-secondary-1); /* Light border for the outer part */
+        border-top: 8px solid var(--color-primary-1); /* White color for the spinning part */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite; /* Infinite rotation animation */
+    }
 
-	/* Loader Animation */
-	@keyframes spin {
-	    0% {
-	        transform: rotate(0deg);
-	    }
-	    100% {
-	        transform: rotate(360deg);
-	    }
-	}
+    /* Loader Animation */
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 
 
-	</style>
+    </style>
 
 </head>
 <!--Main Start-->
@@ -106,133 +106,133 @@ $preweddingGallery=$gallery->getPreWedGallery($_REQUEST['id']);
 
      ?>
 
-	<!-- Loader Element -->
-	<div id="UpLoader" style="display: none;">
-	     <div class="myLoader"></div>
-	    <h2 style="color: #fff;">Uploading..</h2>
-	</div>
+    <!-- Loader Element -->
+    <div id="UpLoader" style="display: none;">
+         <div class="myLoader"></div>
+        <h2 style="color: #fff;">Uploading..</h2>
+    </div>
 
-		<!-- Placeholder for Bootstrap alerts -->
-	<div id="alertPlaceholder"></div>
+        <!-- Placeholder for Bootstrap alerts -->
+    <div id="alertPlaceholder"></div>
 
      <div>
 
-  		  <div class="row">
-     	
-     	<!--  couple pic -->
-			    <form class="uploadForm col-sm-6" method="post" enctype="multipart/form-data">
-			    	<div class="col-sm-6">
-				      <label class="form-label"> Couple Image </label>
-				      <br>
-				      	   
-				      
-				     <a href="<?php if(getImgURL('couple')){echo getImgURL('couple');}else{ echo assets('img/upload.png');} ?>" target="_blank">
-				     	 <img id="coupleImage" 
-				      	    src="<?php if(getImgURL('couple')){echo getImgURL('couple');}else{ echo assets('img/upload.png');} ?>" alt="Couple Image" class="img-fluid" style="width: 250px; height: 150px;">
+          <div class="row">
+        
+        <!--  couple pic -->
+                <form class="uploadForm col-sm-6" method="post" enctype="multipart/form-data">
+                    <div class="col-sm-6">
+                      <label class="form-label"> Couple Image </label>
+                      <br>
+                           
+                      
+                     <a href="<?php if(getImgURL('couple')){echo getImgURL('couple');}else{ echo assets('img/upload.png');} ?>" target="_blank">
+                         <img id="coupleImage" 
+                            src="<?php if(getImgURL('couple')){echo getImgURL('couple');}else{ echo assets('img/upload.png');} ?>" alt="Couple Image" class="img-fluid" style="width: 250px; height: 150px;">
 
-				     </a>
-				      	    <br>
+                     </a>
+                            <br>
 
-				      <input type="file" class="form-control" id="couple" accept="image/*" name="couple" required>
-				      <button type="submit" class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></button>
+                      <input type="file" class="form-control" id="couple" accept="image/*" name="couple" required>
+                      <button type="submit" class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></button>
 
-				    </div>
+                    </div>
 
-			    </form>
-  		<!-- hero pic -->
-  		<form method="post" enctype="multipart/form-data" class="uploadForm col-sm-6">
-			    <div class="col-sm-6">
-			      <label class="form-label">Hero Image/Video</label>
-			      <br>
+                </form>
+        <!-- hero pic -->
+        <form method="post" enctype="multipart/form-data" class="uploadForm col-sm-6">
+                <div class="col-sm-6">
+                  <label class="form-label">Hero Image/Video</label>
+                  <br>
 
 
 <?php 
 
 if( getImgURL('hero')){
-	$mediaURL = getImgURL('hero');
+    $mediaURL = getImgURL('hero');
 
- 	$headers = get_headers($mediaURL, 1);
+    $headers = get_headers($mediaURL, 1);
 
-	// Check if Content-Type exists in the headers
-	if (isset($headers['Content-Type'])) {
-	    $contentType = $headers['Content-Type'];
+    // Check if Content-Type exists in the headers
+    if (isset($headers['Content-Type'])) {
+        $contentType = $headers['Content-Type'];
 
-	    // Check if it's an image
-	    if (strpos($contentType, 'image') !== false) {
-	        
+        // Check if it's an image
+        if (strpos($contentType, 'image') !== false) {
+            
 ?>
     <a href="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" target="_blank">
-		<img id="heroImage" src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" alt="Hero Image" class="img-fluid" style="width: 250px; height: 150px;">
+        <img id="heroImage" src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" alt="Hero Image" class="img-fluid" style="width: 250px; height: 150px;">
     </a>
-	        <?php
-	    }
-	    // Check if it's a video
-	    elseif (strpos($contentType, 'video') !== false) {
-	   ?>
+            <?php
+        }
+        // Check if it's a video
+        elseif (strpos($contentType, 'video') !== false) {
+       ?>
 
-	    <video width="250" height="150" controls>
-			<source src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" type="video/mp4">
-						  Your browser does not support the video tag.
-	    </video>
+        <video width="250" height="150" controls>
+            <source src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" type="video/mp4">
+                          Your browser does not support the video tag.
+        </video>
 
-	   <?php
-	    }
-	}
+       <?php
+        }
+    }
 
 }else{
-	?>
-	 <a href="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" target="_blank">
-		<img id="heroImage" src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" alt="Hero Image" class="img-fluid" style="width: 250px; height: 150px;">
+    ?>
+     <a href="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" target="_blank">
+        <img id="heroImage" src="<?php if(getImgURL('hero')){echo getImgURL('hero');}else{ echo assets('img/upload.png');} ?>" alt="Hero Image" class="img-fluid" style="width: 250px; height: 150px;">
     </a>
 <?php  }  ?>
-						<br>
-			      	   <!--  <label for="hero" class="form-label"><span class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></span>
-			      	    </label> -->
+                        <br>
+                       <!--  <label for="hero" class="form-label"><span class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></span>
+                        </label> -->
 
-			      
+                  
  <!-- onchange="this.form.submit()" -->
-			    	<input type="file" class="form-control" id="hero" accept="image/*,video/*" name="hero" required>
-			    	<button type="submit" class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></button>
-			    </div>
-			</form>
-			
+                    <input type="file" class="form-control" id="hero" accept="image/*,video/*" name="hero" required>
+                    <button type="submit" class="btn btn-sm btn-primary">Upload <i class="fas fa-camera"></i></button>
+                </div>
+            </form>
+            
      </div>
 
 
-  		  		<!--  gallery  -->
-  		<div class="d-flex align-items-center">
-  			<h5>Pre Wedding Gallery</h5>
+                <!--  gallery  -->
+        <div class="d-flex align-items-center">
+            <h5>Pre Wedding Gallery</h5>
 
 
-  		</div>
+        </div>
                         
 
-  		<div class="preweddingGallery">
-  			
-  			<form  method="post" enctype="multipart/form-data" class="uploadForm">
+        <div class="preweddingGallery">
+            
+            <form  method="post" enctype="multipart/form-data" class="uploadForm">
 
-		    	<div class="row">
+                <div class="row">
 
-				    <div class="col-sm-5">
-				    	<input type="file" class="form-control" accept="image/*,video/*" name="galleryPic" required>
-				    </div>
+                    <div class="col-sm-5">
+                        <input type="file" class="form-control" accept="image/*,video/*" name="galleryPic" required>
+                    </div>
 
-				    <div class="col-sm-3">
-				    	<!-- Submit Button -->
-		    			<button type="submit" name="btn-submit" class="btn btn-primary btn-sm">Add</button>
-				    </div>
+                    <div class="col-sm-3">
+                        <!-- Submit Button -->
+                        <button type="submit" name="btn-submit" class="btn btn-primary btn-sm">Add</button>
+                    </div>
 
-				</div>
+                </div>
 
-  			</form>
+            </form>
 
-  		</div>
+        </div>
  
-		<!--  display pre wedding images -->
-  		<div>
+        <!--  display pre wedding images -->
+        <div>
 
-  			<div class="d-flex align-items-center gap-4 mt-3 flex-wrap">
-  		
+            <div class="d-flex align-items-center gap-4 mt-3 flex-wrap">
+        
              <div class="d-flex gap-2 align-items-center">
     <?php
     if (!$preweddingGallery['error']) {
@@ -272,6 +272,7 @@ if( getImgURL('hero')){
 </div>
 
 <!-- Modal -->
+<?php if (!$preweddingGallery['error']) { ?>
 <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -284,6 +285,7 @@ if( getImgURL('hero')){
                 <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <?php
+
                         for ($i = 0; $i < count($preweddingGallery); $i++) {
                             $headers = get_headers($preweddingGallery[$i]['imageURL'], 1);
                             $isActive = ($i == 0) ? 'active' : '';
@@ -322,19 +324,19 @@ if( getImgURL('hero')){
         </div>
     </div>
 </div>
-
+<?php   } ?>
 
         </div>    
-                                		
+                                        
 
                 <?php 
                  if ($preweddingGallery['error']){
-                 	echo "<br>Pre Wedding Gallery is empty!";
+                    echo "<br>Pre Wedding Gallery is empty!";
                  }
 
                 ?>
-  			
-  		</div>
+            
+        </div>
 
 
      </div>
@@ -344,8 +346,8 @@ if( getImgURL('hero')){
 <!--Main End-->
 
 <script type="text/javascript">
-	
-	$(document).ready(function(){
+    
+    $(document).ready(function(){
             // Add new form on button click
             $("#addEventImgBtn").click(function(){
                 var newForm = $(".eventGallery form:first").clone();
@@ -366,6 +368,7 @@ if( getImgURL('hero')){
 
 
 <script>
+
 
 // Get all forms with the class 'uploadForm'
 const forms = document.querySelectorAll('.uploadForm');

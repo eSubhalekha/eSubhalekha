@@ -88,6 +88,7 @@ function assets($path)
   echo home() . "assets/" . $path;
 }
 
+
 function themeAssets($template,$path)
 {
   // echo home() . "views/templates/".$template."/assets/" . $path;
@@ -99,7 +100,15 @@ function view($fileName)
   return require("views/" . $fileName . ".php");
 }
 
-// Get url for a route
+function removeLastWord($string)
+{
+  $words = explode(" ", $string);
+  if (count($words) > 1) {
+    array_pop($words);
+  }
+  return implode(" ", $words);
+}
+
 function route($path)
 {
   return home() . $path;

@@ -1,0 +1,11 @@
+{
+  "themeID":5,
+  "themeName": "Azure",
+  "themePrice": 2000,
+  "preview":"https://template4-pied.vercel.app/",
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "active":true,
+  "createdDate" : "2024-10-15"
+}

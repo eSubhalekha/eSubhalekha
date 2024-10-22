@@ -1,0 +1,456 @@
+
+nav *{
+  user-select: none;
+  color: var(--color-secondary-1) !important;
+}
+/*nav{
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+
+}*/
+nav a{
+  font-family: var(--base-font) !important;
+}
+nav .nav-link{
+  font-size: 18px;
+  margin: auto 10px;
+}
+nav .nav-link:hover{
+  opacity: .8;
+}
+nav{
+  border-bottom: 1px solid var(--color-secondary-5);
+}
+nav .nav-link:focus,
+nav .nav-link:active{
+  opacity: .6;
+}
+
+nav .btn-secondary{
+  color: var(--color-primary-1) !important;
+  width: 180px !important;
+}
+
+.navbar-toggler{
+  border: none !important;
+  padding: 0 !important;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active{
+  box-shadow: none !important;
+}
+
+.navbar {
+    transition: top 0.5s ease-in-out;
+    position: fixed;
+    width: 100%;
+    top: -120px;
+}
+
+.navbar.visible {
+    top: 0;
+}
+
+#app{
+  /*margin-top: 20vh !important;*/
+}
+
+.navbar-brand{
+  font-size: 24px;
+}
+
+.dropdown-menu *{
+  color: var(--color-black) !important;
+
+}
+
+/* --------------- */
+
+a{
+    text-decoration: none !important;
+}
+
+.fixed-button {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    right: 0;
+}
+
+.fixed-button button{
+  margin: 0;
+  border-radius: 0;
+}
+
+/* section head*/
+.section-head{
+  color: var(--color-primary-1);
+  text-align: center;
+  margin:1.3rem 0;
+}
+
+section{
+  padding-top: 2.5rem;
+}
+
+/* hero section css */
+
+#heroSection{
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.text-hero{
+    font-weight:bold;
+  color: var(--color-primary-1);
+  font-family: var(--heading-font) !important;
+}
+
+.bride,.and,.groom{
+  font-family: var(--heading-font) !important;
+}
+
+.carousel-caption{
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    right: 0;
+    bottom: 0;
+}
+#countdown div{
+  background: black;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+    #heroCarousel {
+      position: relative;
+    }
+
+    #heroCarousel .item {
+      background-size: cover;
+      background-position: center;
+      height: 100vh; /* Set your preferred height */
+      position: relative;
+    }
+
+        #heroCarousel .item h2
+        {
+          font-size: 3rem;
+        }
+#countdown{
+      position: relative;
+    top: 95% !important;
+    left: 50% !important;
+    transform: translate(-50%, -95%) !important;
+    right: 0;
+    bottom: 0;
+    font-size: 1rem;
+}
+
+    #heroCarousel .item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5); /* Adjust the overlay color and opacity */
+    }
+
+    #heroCarousel .carousel-caption {
+      /*position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+*/      color: white; /* Adjust the text color */
+      text-align: center;
+    }
+
+    .lines {
+    text-align: center;
+    position: relative;
+    color: var(--color-secondary-1);
+    padding: 0 10px;
+}
+
+.lines::before,
+.lines::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 80px; /* Adjust the width as needed */
+    height: 1px;
+    background-color: black; /* Adjust the color as needed */
+}
+
+.lines::before {
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.lines::after {
+    right: 0;
+    transform: translate(100%, -50%);
+}
+
+/* hero section css ends*/
+
+
+/* about section css starts */
+#aboutSection{
+      z-index: 2;
+    position: relative;
+    background-image: url('https://img.freepik.com/free-psd/realistic-love-flowers-arrangement_23-2150320524.jpg');
+        background-size: contain; 
+        background-position: bottom;
+
+}
+.svg{
+  margin: 0;margin-top: -2rem;z-index: -1;
+}
+.coupleImg{
+  width: 250px;
+  object-fit: cover;
+}
+
+.image-column{
+  position: relative;
+}
+.image-column .img-bg{
+     width: 250px;
+    position: absolute;
+    top: -12px;
+    z-index: -1;
+    right: -1px;
+    background-color: var(--color-primary-1);
+    height: 105%;
+    border-bottom-right-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+    .vertical-lines {
+    text-align: center;
+    position: relative;
+    color: var(--color-secondary-1);
+    padding: 0 10px;
+}
+
+.vertical-lines::before,
+.vertical-lines::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 3px; /* Adjust the width as needed */
+    height: 20px;
+    background-color: var(--color-secondary-3); /* Adjust the color as needed */
+}
+
+.vertical-lines::before {
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.vertical-lines::after {
+    right: 0;
+    transform: translate(100%, -50%);
+}
+
+/* about section css ends */
+
+/* bride groom css starts */
+
+.brideImg,.groomImg{
+  border-radius: 50%;
+    width: 200px; 
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--color-secondary-1);
+}
+.g_img_div,.b_img_div{
+  margin-top: -10%;
+}
+
+/* bride groom css ends */
+
+
+/* our story css starts */
+/* The actual timeline (the vertical ruler) */
+.main-timeline-2 {
+  position: relative;
+}
+
+/* The actual timeline (the vertical ruler) */
+.main-timeline-2::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background-color: var(--color-primary-1);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.timeline-2 {
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.timeline-2::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -11px;
+  background-color:var(--color-primary-1);
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left-2 {
+  padding: 0px 40px 20px 0px;
+  left: 0;
+}
+
+/* Place the container to the right */
+.right-2 {
+  padding: 0px 0px 20px 40px;
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left-2::before {
+  content: " ";
+  position: absolute;
+  top: 18px;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right-2::before {
+  content: " ";
+  position: absolute;
+  top: 18px;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right-2::after {
+  left: -14px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .main-timeline-2::after {
+    left: 31px;
+  }
+
+  /* Full-width containers */
+  .timeline-2 {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  /* Make sure that all arrows are pointing leftwards */
+  .timeline-2::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left-2::after,
+  .right-2::after {
+    left: 18px;
+  }
+
+  .left-2::before {
+    right: auto;
+  }
+
+  /* Make all right containers behave like the left ones */
+  .right-2 {
+    left: 0%;
+  }
+}
+
+/* out story css ends */
+
+/* events css start */
+
+.eventImgDiv{
+  width: 100%;
+  max-height:200px;
+  object-fit: cover;
+}
+  .pink-border {
+    border: 20px solid pink;
+  }
+.galleyImg{
+  height: 300px;
+  object-fit: cover;
+}
+
+.owl-carousel .owl-item img {
+    height: 350px !important;
+    object-fit: cover !important;
+}
+
+
+/* event css ends */
+
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  .brideGroomCont{
+    margin-top: 4rem !important;
+  }
+}
+
+
+/* Small devices (Smartphones, 425px and up) */
+@media (max-width: 425px) {
+  .navbar-brand {
+    font-size: 20px;
+  }
+  #countdown{
+    font-size: 18px;
+  }
+  .svg{
+    margin-top: -20px;
+  }
+
+}
+
+/* Extra Small devices (Smartphones, 350px and up) */
+@media (max-width: 350px) {
+  .navbar-brand {
+    font-size: 16px !important;
+  }
+
+}
+

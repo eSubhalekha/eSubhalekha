@@ -1,0 +1,12 @@
+{
+  "themeID":2,
+  "themeName": "Golden",
+  "themePrice": 4000,
+  "preview":"https://design-5-esubhaleka.netlify.app/",
+  "isPremium":true,
+  "active":true,
+  "displayImages": [
+    "img/theme.png"
+  ],
+  "createdDate" : "2024-10-15"
+}

@@ -94,9 +94,11 @@
         
     <header class="navbar navbar-dark sticky-top bg-primary flex-lg-nowrap p-0 shadow">
       <a class="navbar-brand col-lg-2 me-0 px-3 bg-transparent font-heading" href="<?php echo route('dashboard');?>"><img src="<?php assets('img/eSubhalekha-accent.png');?>" height="40px" class="me-2">eSubhalekha.com</a>
-      <a class="text-white fs-3 ms-auto d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+     <!--  <a class="text-white fs-3 ms-auto d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list"></i> 
-      </a>
+      </a> -->
+      
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
         </li>

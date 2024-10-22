@@ -9,7 +9,7 @@ $currentUser=App::getUser();
 
 // Set the theme details
 $template = $weddingData['template'];
-$themeName = ucwords(explode("_",$template)[0]);
+$themeName = ucwords(explode("_",$template)[2]);
 
 $themeDetails = json_decode(file_get_contents('themes/'.$template.'/manifest.json'), true);
 

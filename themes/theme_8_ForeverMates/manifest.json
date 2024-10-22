@@ -1,0 +1,12 @@
+{
+  "themeID":8,
+  "themeName": "ForeverMates",
+  "themePrice": 3000,
+  "isPremium":true,
+  "displayImages": [
+    "img/theme.png",
+    "img/image2.jpg"
+  ],
+  "active":true,
+  "isTrending": true
+}

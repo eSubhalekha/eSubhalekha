@@ -1,0 +1,13 @@
+{
+  "themeID":9,
+  "themeName": "Green Love",
+  "themePrice": 3000,
+  "isPremium":true,
+  "displayImages": [
+    "img/theme.png",
+    "img/image2.jpg"
+  ],
+   "active":true,
+   "createdDate" : "2024-10-15"
+
+}
